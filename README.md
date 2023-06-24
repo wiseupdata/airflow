@@ -25,10 +25,10 @@ airflow docker images! 🚀️
 </h1>
 
 # Simple to use ❤️
-
 ```bash
-docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.6.1 
+docker-compose -f versions/2.6.1/DockerCompose/airflow.yml up -D
 ```
+[DockerCompose](https://github.com/wiseupdata/airflow/blob/main/versions/2.6.1/DockerCompose/airflow.yml)
 
 <br>
 
