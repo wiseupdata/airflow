@@ -229,11 +229,8 @@ docker run -it \
 --name airflow_test --rm \
 --entrypoint /bin/bash \
 --network dockercompose_airflow \
--e AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False \
--e AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow \
+-e AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow \
 -e AIRFLOW__CORE__FERNET_KEY=81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs= \
--e AIRFLOW_CONN_METADATA_DB=postgres+psycopg2://airflow:airflow@postgres:5432/airflow \
--e AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC=5 \
 -e AIRFLOW__CORE__EXECUTOR=LocalExecutor \
 -v $PWD/versions/2.6.1/DockerCompose/dags:/opt/airflow/dags \
 -v $PWD/versions/2.6.1/DockerCompose/dags:/opt/airflow/logs \
