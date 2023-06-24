@@ -3,3 +3,4 @@ oneclik-deploy.sh
 assets/scripts/scripts.sh
 
 versions/*/jars
+versions/2.6.1/DockerCompose/pgadmin/pgadmin4.db

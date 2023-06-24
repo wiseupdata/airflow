@@ -7,7 +7,6 @@ services:
       - POSTGRES_USER=airflow
       - POSTGRES_PASSWORD=airflow
       - POSTGRES_DB=airflow
-      - POSTGRES_DB_SCHEMA=airflow
     ports:
       - "15433:5432"
     volumes:
@@ -15,6 +14,8 @@ services:
       - $PWD/versions/2.6.1/DockerCompose/postgres/init:/docker-entrypoint-initdb.d
     container_name: postgres
     hostname: postgres
+    networks:
+      - airflow
   pgadmin:
     image: dpage/pgadmin4
     privileged: true
@@ -28,6 +29,8 @@ services:
     depends_on:
       - postgres
     container_name: pgadmin
+    networks:
+      - airflow
   webserver:
     image: wiseupdata/airflow:2.6.1
     hostname: webserver
@@ -39,7 +42,7 @@ services:
       - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW__CORE__FERNET_KEY=81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs=
       - AIRFLOW_CONN_METADATA_DB=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
-      - AIRFLOW_VAR__METADATA_DB_SCHEMA=airflow
+      - AIRFLOW_VAR__METADATA_DB_SCHEMA=public
       - AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC=5
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     volumes:
@@ -47,6 +50,8 @@ services:
       - $PWD/versions/2.6.1/DockerCompose/logs:/opt/airflow/logs
     ports:
       - "8089:8080"
+    networks:
+      - airflow
     healthcheck:
       test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
       interval: 30s
@@ -55,3 +60,6 @@ services:
     depends_on:
       - postgres
 
+networks:
+  airflow:
+    driver: bridge

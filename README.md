@@ -198,7 +198,7 @@ docker run -it --entrypoint /bin/bash airflow
 
 <details>
 <summary>
-Troubleshoot 😕 [click]
+# Troubleshoot 😕 [click]
 </summary>
 
 Create folders
