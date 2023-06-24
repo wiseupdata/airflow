@@ -27,7 +27,7 @@ airflow docker images! 🚀️
 # Simple to use ❤️
 
 ```bash
-docker run -it wiseupdata/airflow bash
+docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.6.1 
 ```
 
 <br>
