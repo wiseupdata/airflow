@@ -66,8 +66,8 @@ docker run -it wiseupdata/airflow bash
 
 Example with specific version 💻:
 ```bash
-docker run -it wiseupdata/airflow:2.6.1 bash
-docker run -it wiseupdata/airflow:2.6.1-ubuntu-22.04 bash
+docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.6.1 
+docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.6.1-ubuntu-22.04 
 ```
 
 

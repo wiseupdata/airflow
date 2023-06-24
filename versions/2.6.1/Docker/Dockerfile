@@ -1,7 +1,7 @@
 #########################################################
 # Oficial Python Image based in Ubuntu
 #########################################################
-# Ubuntu 23.04
+# Ubuntu 22.04.2 LTS
 FROM wiseupdata/python:3.10
 
 LABEL maintainer="silvio liborio"
