@@ -85,7 +85,7 @@ EXPOSE 8080 5555 8793
 ##############################################################################
 RUN echo "Final steps"
 ##############################################################################
-RUN  chmod a+x /opt/entrypoint.sh
+RUN  chmod a+x /entrypoint.sh
 
 RUN rm -rf /tmp/* && \
     apt autoremove -y && \

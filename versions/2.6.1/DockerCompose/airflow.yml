@@ -1,0 +1,57 @@
+version: "2.1"
+services:
+  postgres:
+    image: postgis/postgis:13-master
+    privileged: true
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+      - POSTGRES_DB_SCHEMA=airflow
+    ports:
+      - "15433:5432"
+    volumes:
+      - $PWD/versions/2.6.1/DockerCompose/postgres/data:/var/lib/postgresql/data
+      - $PWD/versions/2.6.1/DockerCompose/postgres/init:/docker-entrypoint-initdb.d
+    container_name: postgres
+    hostname: postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    privileged: true
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "wiseupdata@wiseupdata.com"
+      PGADMIN_DEFAULT_PASSWORD: "wiseupdata"
+    volumes:
+      - $PWD/versions/2.6.1/DockerCompose/pgadmin:/var/lib/pgadmin
+    ports:
+      - "16544:80"
+    depends_on:
+      - postgres
+    container_name: pgadmin
+  webserver:
+    image: wiseupdata/airflow:2.6.1
+    hostname: webserver
+    restart: always
+    container_name: airflow
+    privileged: true
+    environment:
+      - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__CORE__FERNET_KEY=81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs=
+      - AIRFLOW_CONN_METADATA_DB=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW_VAR__METADATA_DB_SCHEMA=airflow
+      - AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC=5
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+    volumes:
+      - $PWD/versions/2.6.1/DockerCompose/dags:/opt/airflow/dags
+      - $PWD/versions/2.6.1/DockerCompose/logs:/opt/airflow/logs
+    ports:
+      - "8089:8080"
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f /usr/local/airflow/airflow-webserver.pid ]"]
+      interval: 30s
+      timeout: 30s
+      retries: 32
+    depends_on:
+      - postgres
+

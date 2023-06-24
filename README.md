@@ -55,7 +55,7 @@ docker run -it wiseupdata/airflow bash
 - Kubernetes Ready and Tested!
 - User`airflow` with sudo no password
 - Made with A.I. contribution 🤖 
-- [Dockerfile](https://github.com/wiseupdata/airflow/blob/main/versions/2.6.1/Dockerfile)
+- [Dockerfile](https://github.com/wiseupdata/airflow/blob/main/versions/2.6.1/Docker/Dockerfile)
 
   > This setup it's the same for the tags: 2.6.1 and 2.6.1-ubuntu-22.04
 
@@ -70,6 +70,26 @@ docker run -it wiseupdata/airflow:2.6.1 bash
 docker run -it wiseupdata/airflow:2.6.1-ubuntu-22.04 bash
 ```
 
+
+<details>
+<summary>
+Docker Compose 📀 [click]
+</summary>
+
+
+## Run 
+```bash
+
+docker-compose -f versions/2.6.1/DockerCompose/airflow.yml up
+
+```
+
+## Stop
+```bash
+docker-compose -f versions/2.6.1/DockerCompose/airflow.yml down
+```
+
+</details>
 
 <a name="ref_build"></a>
 
@@ -86,7 +106,7 @@ click here!▶️
 - Build the image
 
 ```bash
-docker build -t airflow ./versions/2.6.1 --no-cache
+docker build -t airflow ./versions/2.6.1/Docker --no-cache
 ```
 
 - Test the image
@@ -139,7 +159,7 @@ docker run -it wiseupdata/airflow:2.6.1 bash
 # Utils 🎁 
 <details>
 <summary>
-click here!▶️
+✨️ [click] 
 </summary>
 
 list all container
@@ -175,6 +195,27 @@ docker run -it --entrypoint /bin/bash airflow
 </details>
 <br>
 <br>
+
+<details>
+<summary>
+Troubleshoot 😕 [click]
+</summary>
+
+Create folders
+```bash
+
+sudo rm -Rf versions/2.6.1/DockerCompose/postgres
+sudo mkdir -p versions/2.6.1/DockerCompose/postgres/data
+sudo mkdir -p versions/2.6.1/DockerCompose/postgres/init
+sudo chmod 777 -R versions/2.6.1/DockerCompose/postgres
+
+sudo rm -Rf versions/2.6.1/DockerCompose/pgadmin
+sudo mkdir -p versions/2.6.1/DockerCompose/pgadmin
+sudo chmod 777 -R versions/2.6.1/DockerCompose/pgadmin
+```
+
+</details>
+
 
 
 ---
