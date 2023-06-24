@@ -67,7 +67,8 @@ RUN pip install \
 RUN echo "installing the airflow"
 ##############################################################################
 ARG CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
-RUN pip install "apache-airflow[aws,crypto,celery,jira,amazon,postgres,http,jdbc,password,redis,ssh,google,databricks]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+RUN pip install "apache-airflow[aws,crypto,celery,jira,amazon,postgres,http,jdbc,password,redis,ssh,google,databricks]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}" \
+    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
 
 
 ##############################################################################

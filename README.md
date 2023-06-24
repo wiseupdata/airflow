@@ -148,7 +148,7 @@ docker push wiseupdata/airflow:2.6.1-ubuntu-22.04
 ### Test the image 🎢
 
 ```bash
-docker run -it wiseupdata/airflow:2.6.1 bash
+docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.6.1 
 ```
 </details>
 
@@ -237,7 +237,7 @@ docker run -it \
 -e AIRFLOW__CORE__EXECUTOR=LocalExecutor \
 -v $PWD/versions/2.6.1/DockerCompose/dags:/opt/airflow/dags \
 -v $PWD/versions/2.6.1/DockerCompose/dags:/opt/airflow/logs \
-wiseupdata/airflow:2.6.1 
+wiseupdata/airflow:2.6.1 -c "echo logged; bash"
 ```
 
 </details>
