@@ -4,3 +4,6 @@ assets/scripts/scripts.sh
 
 versions/*/jars
 versions/2.6.1/DockerCompose/pgadmin/pgadmin4.db
+versions/2.6.1/DockerCompose/postgres/data
+versions/2.6.1/DockerCompose/pgadmin/*
+versions/2.6.1/DockerCompose/logs/*
