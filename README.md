@@ -230,6 +230,7 @@ Run the container Airflow Manually
 ```bash
 docker run -it \
 --name airflow_test --rm \
+-u airflow \
 --entrypoint /bin/bash \
 --network dockercompose_airflow \
 -e AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow \

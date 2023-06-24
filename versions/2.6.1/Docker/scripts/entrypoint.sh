@@ -3,7 +3,8 @@
 
 TRY_LOOP="5"
 
-echo "Reading entrypoint"
+clear
+echo -e "\nReading entrypoint\nUser: $USER"
 
 # Global defaults and back-compat
 : "${AIRFLOW_HOME:="/opt/airflow"}"
@@ -107,6 +108,7 @@ fi
 
 case "$1" in
   webserver)
+    echo -e "\nStarting Airflow\n\nUser: $USER\nAIRFLOW__CORE__EXECUTOR: $AIRFLOW__CORE__EXECUTOR\nAIRFLOW__DATABASE__SQL_ALCHEMY_CONN: $AIRFLOW__DATABASE__SQL_ALCHEMY_CONN"
     airflow db init
     airflow db upgrade
     airflow users create --username airflow --password airflow --firstname Peter --lastname Parker --role Admin --email spiderman@superhero.org     

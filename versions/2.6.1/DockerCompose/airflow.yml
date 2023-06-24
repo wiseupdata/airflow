@@ -31,6 +31,7 @@ services:
       - airflow
   webserver:
     image: wiseupdata/airflow:2.6.1
+    user: airflow
     hostname: webserver
     restart: always
     container_name: airflow

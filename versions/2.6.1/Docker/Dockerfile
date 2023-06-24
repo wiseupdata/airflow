@@ -63,11 +63,16 @@ RUN pip install -r $AIRFLOW_HOME/dags/requirements.txt
 
 
 ##############################################################################
-RUN echo "installing the airflow"
+RUN echo "installing Apache Airflow"
 ##############################################################################
 ARG CONSTRAINT_URL="https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt"
-RUN pip install "apache-airflow[aws,crypto,celery,jira,amazon,postgres,http,jdbc,password,redis,ssh,google,databricks]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}" \
-    && echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+RUN pip install "apache-airflow[aws,crypto,celery,jira,amazon,postgres,http,jdbc,password,redis,ssh,google,databricks]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+
+
+##############################################################################
+RUN echo "Set PATH environment variable for all users"
+##############################################################################
+RUN echo 'export PATH="$HOME/.local/bin:$PATH"' >> /etc/profile
 
 
 ##############################################################################
@@ -98,7 +103,3 @@ USER airflow
 WORKDIR ${AIRFLOW_HOME}
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["webserver"]
-
-
-## Run the container base to debug the Dockerfile.
-# docker run -it --name python --rm wiseupdata/python:3.10 bash
