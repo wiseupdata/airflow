@@ -8,6 +8,8 @@
 
 TRY_LOOP="5"
 
+echo "Reading entrypoint"
+
 # Global defaults and back-compat
 : "${AIRFLOW_HOME:="/opt/airflow"}"
 : "${AIRFLOW__CORE__FERNET_KEY:=${FERNET_KEY:=$(python -c "from cryptography.fernet import Fernet; FERNET_KEY = Fernet.generate_key().decode(); print(FERNET_KEY)")}}"
@@ -22,11 +24,11 @@ export \
   AIRFLOW_HOME \
   AIRFLOW__CORE__EXECUTOR \
   AIRFLOW__CORE__FERNET_KEY \
-  AIRFLOW__CORE__LOAD_EXAMPLES \
+  AIRFLOW__CORE__LOAD_EXAMPLES
 
 # Install custom python package if requirements.txt is present
-if [ -e "requirements.txt" ]; then
-    $(command -v pip3) install --user -r requirements.txt
+if [ -e "$AIRFLOW_HOME/dags/requirements.txt" ]; then
+    $(command -v pip3) install --user -r /opt/airflow/dags/requirements.txt
 fi
 
 wait_for_port() {

@@ -29,6 +29,7 @@ RUN rm -rf /tmp/* && \
 
 RUN apt-get update && apt-get upgrade -y
 
+RUN apt-get install netcat -y
 
 ##############################################################################
 RUN echo "Creating and Managing the user Airflow"
