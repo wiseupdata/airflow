@@ -1,3 +1,2 @@
-CREATE USER airflow WITH PASSWORD 'airflow';
-GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow;
+ALTER USER airflow WITH PASSWORD 'airflow';
 ALTER DATABASE airflow OWNER TO airflow;
