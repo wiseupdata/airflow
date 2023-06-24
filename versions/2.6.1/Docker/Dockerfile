@@ -52,15 +52,14 @@ RUN echo "preparing the artifacts and configures"
 ##############################################################################
 COPY scripts/entrypoint.sh /entrypoint.sh
 COPY config/constraints-3.10.txt /constraints-3.10.txt
-
+COPY config/requirements.txt $AIRFLOW_HOME/dags/requirements.txt
 
 ##############################################################################
 RUN echo "installing the python dependencies"
 ##############################################################################
 USER airflow
 
-RUN pip install \
-    binance-connector==1.10.0
+RUN pip install -r $AIRFLOW_HOME/dags/requirements.txt
 
 
 ##############################################################################

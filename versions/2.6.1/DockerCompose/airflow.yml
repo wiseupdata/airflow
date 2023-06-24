@@ -38,12 +38,8 @@ services:
     container_name: airflow
     privileged: true
     environment:
-      - AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
-      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
+      - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
       - AIRFLOW__CORE__FERNET_KEY=81HqDtbqAywKSOumSha3BhWNOdQ26slT6K0YaZeZyPs=
-      - AIRFLOW_CONN_METADATA_DB=postgres+psycopg2://airflow:airflow@postgres:5432/airflow
-      - AIRFLOW_VAR__METADATA_DB_SCHEMA=public
-      - AIRFLOW__SCHEDULER__SCHEDULER_HEARTBEAT_SEC=5
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
     volumes:
       - $PWD/versions/2.6.1/DockerCompose/dags:/opt/airflow/dags
