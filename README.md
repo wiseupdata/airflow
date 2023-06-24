@@ -207,19 +207,22 @@ Create folders
 ```bash
 
 sudo rm -Rf versions/2.6.1/DockerCompose/postgres
-sudo mkdir -p versions/2.6.1/DockerCompose/postgres/data
-sudo mkdir -p versions/2.6.1/DockerCompose/postgres/init
-sudo chmod 777 -R versions/2.6.1/DockerCompose/postgres
+mkdir -p versions/2.6.1/DockerCompose/postgres/data
+mkdir -p versions/2.6.1/DockerCompose/postgres/init
+
+cat <<EOF >> versions/2.6.1/DockerCompose/postgres/init/init.sql
+CREATE USER airflow WITH PASSWORD 'airflow';
+GRANT ALL PRIVILEGES ON DATABASE airflow TO airflow;
+ALTER DATABASE airflow OWNER TO airflow;
+EOF
 
 sudo rm -Rf versions/2.6.1/DockerCompose/pgadmin
-sudo mkdir -p versions/2.6.1/DockerCompose/pgadmin
-sudo chmod 777 -R versions/2.6.1/DockerCompose/pgadmin
+mkdir -p versions/2.6.1/DockerCompose/pgadmin
 
+sudo  rm -Rf versions/2.6.1/DockerCompose/logs
+mkdir -p versions/2.6.1/DockerCompose/logs
 
-sudo chmod 777 -R versions/2.6.1/DockerCompose/dags
-sudo chmod 777 -R versions/2.6.1/DockerCompose/logs
-
-
+sudo chmod 777 -R versions/2.6.1/DockerCompose
 ```
 
 Run the container Airflow Manually
