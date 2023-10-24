@@ -6,7 +6,6 @@ FROM wiseupdata/python:3.10
 
 LABEL maintainer="silvio liborio"
 
-
 ###############################################################################
 RUN echo "Initial setup and envs" 
 ##############################################################################
@@ -50,16 +49,18 @@ RUN mkdir $AIRFLOW_HOME \
 ##############################################################################
 RUN echo "preparing the artifacts and configures"
 ##############################################################################
-COPY scripts/entrypoint.sh /entrypoint.sh
-COPY config/constraints-3.10.txt /constraints-3.10.txt
-COPY config/requirements.txt $AIRFLOW_HOME/dags/requirements.txt
+COPY scripts/entrypoint.sh $AIRFLOW_HOME/
+COPY config/constraints-3.10.txt $AIRFLOW_HOME/
+COPY config/requirements.txt $AIRFLOW_HOME/dags/
 RUN sudo chown -R airflow:airflow ${AIRFLOW_HOME}
 
 ##############################################################################
 RUN echo "installing the python dependencies"
 ##############################################################################
 USER airflow
+WORKDIR ${AIRFLOW_HOME}
 
+RUN pip install --upgrade pip
 RUN pip install -r $AIRFLOW_HOME/dags/requirements.txt
 
 
@@ -105,5 +106,5 @@ RUN rm -rf /tmp/* && \
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["$AIRFLOW_HOME/entrypoint.sh"]
 CMD ["webserver"]

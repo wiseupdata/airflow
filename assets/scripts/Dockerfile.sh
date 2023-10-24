@@ -33,7 +33,7 @@ apt-get install netcat -y
 ##############################################################################
 echo "Creating and Managing the su airflow"
 ##############################################################################
-addsu airflow --disabled-password && usermod -aG sudo airflow
+adduser airflow --disabled-password && usermod -aG sudo airflow
 echo "airflow ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/airflow
 
 
@@ -45,20 +45,23 @@ mkdir $AIRFLOW_HOME \
     && mkdir $AIRFLOW_HOME/dags \
     && mkdir $AIRFLOW_HOME/plugins
 
-
 ##############################################################################
 echo "preparing the artifacts and configures"
 ##############################################################################
-COPY scripts/entrypoint.sh /entrypoint.sh
-COPY config/constraints-3.10.txt /constraints-3.10.txt
-COPY config/requirements.txt $AIRFLOW_HOME/dags/requirements.txt
+
+docker cp scripts/entrypoint.sh python:$AIRFLOW_HOME/entrypoint.sh
+docker cp config/constraints-3.10.txt python:$AIRFLOW_HOME/constraints-3.10.txt
+docker cp config/requirements.txt python:$AIRFLOW_HOME/dags/requirements.txt
+
 sudo chown -R airflow:airflow ${AIRFLOW_HOME}
 
 ##############################################################################
 echo "installing the python dependencies"
 ##############################################################################
 su airflow
+cd ${AIRFLOW_HOME}
 
+pip install --upgrade pip
 pip install -r $AIRFLOW_HOME/dags/requirements.txt
 
 
@@ -94,7 +97,7 @@ EXPOSE 8080 5555 8793
 ##############################################################################
 echo "Final steps"
 ##############################################################################
- chmod a+x /entrypoint.sh
+chmod a+x /entrypoint.sh
 
 rm -rf /tmp/* && \
     apt autoremove -y && \
@@ -104,5 +107,5 @@ rm -rf /tmp/* && \
 
 su airflow
 cd ${AIRFLOW_HOME}
-sh /entrypoint.sh
+sh $AIRFLOW_HOME/entrypoint.sh
 webserver
