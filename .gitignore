@@ -9,3 +9,12 @@ versions/2.6.1/DockerCompose/pgadmin/*
 versions/2.6.1/DockerCompose/logs/*
 versions/2.6.1/DockerCompose/dags/dag_processor_manager/*
 versions/2.6.1/DockerCompose/dags/scheduler/*
+
+versions/2.6.1/DockerCompose/Docker/.cache
+versions/2.6.1/Docker/.cache
+versions/2.6.1/Docker/.local
+versions/2.6.1/Docker/.bash_history
+versions/2.6.1/Docker/.sudo_as_admin_successful
+versions/2.6.1/Docker/scripts/.bash_history
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/pgadmin4.db
+versions/2.6.1/DockerCompose/.env
