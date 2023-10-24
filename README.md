@@ -89,6 +89,13 @@ docker-compose -f versions/2.6.1/DockerCompose/airflow.yml up
 docker-compose -f versions/2.6.1/DockerCompose/airflow.yml down
 ```
 
+## Run with local Docker file
+```bash
+
+docker-compose -f versions/2.6.1/DockerCompose/local-airflow.yml up
+
+```
+
 </details>
 
 <a name="ref_build"></a>

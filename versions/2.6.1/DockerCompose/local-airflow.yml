@@ -27,7 +27,7 @@ services:
     networks:
       - airflow
   webserver:
-    image: wiseupdata/airflow:2.6.1
+    build: $PWD/versions/2.6.1/Docker
     user: airflow
     hostname: webserver
     restart: always

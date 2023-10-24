@@ -96,7 +96,7 @@ EXPOSE 8080 5555 8793
 ##############################################################################
 RUN echo "Final steps"
 ##############################################################################
-RUN  chmod a+x /entrypoint.sh
+RUN  chmod a+x $AIRFLOW_HOME/entrypoint.sh
 
 RUN rm -rf /tmp/* && \
     apt autoremove -y && \
@@ -106,5 +106,5 @@ RUN rm -rf /tmp/* && \
 
 USER airflow
 WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT ["$AIRFLOW_HOME/entrypoint.sh"]
+ENTRYPOINT ["/opt/airflow/entrypoint.sh"]
 CMD ["webserver"]
