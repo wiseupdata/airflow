@@ -18,3 +18,8 @@ versions/2.6.1/Docker/.sudo_as_admin_successful
 versions/2.6.1/Docker/scripts/.bash_history
 versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/pgadmin4.db
 versions/2.6.1/DockerCompose/.env
+
+
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/postgres/data/
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/storage/wiseupdata_wiseupdata.com/
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/sessions/
