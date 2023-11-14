@@ -4,6 +4,12 @@
 TRY_LOOP="5"
 
 clear
+su airflow
+export PATH="$PATH:/home/airflow/.local/bin"
+export AIRFLOW__CORE__DEFAULT_TIMEZONE=UTC
+
+AIRFLOW__CORE__DEFAULT_TIMEZONE = UTC
+
 echo -e "\nReading entrypoint\nUser: $USER"
 
 # Global defaults and back-compat

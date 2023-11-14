@@ -21,5 +21,13 @@ versions/2.6.1/DockerCompose/.env
 
 
 versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/postgres/data/
-versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/storage/wiseupdata_wiseupdata.com/
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/storage/wiseupdata_wiseupdata.com/*
 versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/sessions/
+versions/2.7.3/docker-compose-custom-img/logs/*
+versions/2.7.3/docker-compose/logs/*
+versions/2.6.1/docker-compose/logs/*
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/dags/__pycache__/*
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/logs/*
+versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/*
+versions/2.7.3/docker-compose/.env
+versions/2.7.3/docker-compose-custom-img/.env

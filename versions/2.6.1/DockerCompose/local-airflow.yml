@@ -27,7 +27,8 @@ services:
     networks:
       - airflow
   webserver:
-    build: $PWD/versions/2.6.1/Docker
+    build: 
+      context: $HOME/public/airflow/versions/2.6.1/Docker
     user: airflow
     hostname: webserver
     restart: always
