@@ -31,3 +31,6 @@ versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/logs/*
 versions/2.6.1/DockerCompose/versions/2.6.1/DockerCompose/pgadmin/*
 versions/2.7.3/docker-compose/.env
 versions/2.7.3/docker-compose-custom-img/.env
+versions/2.7.3/docker-compose-custom-img/dags/futurerich
+versions/2.7.3/docker-compose-custom-img/dags/utils
+versions/2.7.3/docker-compose-custom-img/dags/__pycache__/test.cpython-38.pyc
