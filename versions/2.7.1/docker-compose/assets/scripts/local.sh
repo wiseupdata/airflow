@@ -27,3 +27,5 @@ rm -Rf ./logs/*
 
 ## Go inside the running container
 docker exec -it docker-compose-custom-img-airflow-webserver-1 bash
+
+docker inspect --format='{{.Architecture}}' wiseupdata/airflow:2.7.1

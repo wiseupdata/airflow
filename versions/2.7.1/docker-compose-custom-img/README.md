@@ -26,7 +26,8 @@ airflow docker images! 🚀️
 
 # Simple to use ❤️
 ```bash
-docker-compose -f versions/2.7.1/DockerCompose/airflow.yml up -D
+cd versions/2.7.1/DockerCompose
+docker compose up airflow-init && docker-compose up -D
 ```
 [DockerCompose](https://github.com/wiseupdata/airflow/blob/main/versions/2.7.1/DockerCompose/airflow.yml)
 
@@ -113,7 +114,18 @@ click here!▶️
 - Build the image
 
 ```bash
-docker build -t airflow ./ --no-cache
+
+docker buildx ls
+docker buildx stop
+docker buildx rm mybuilder
+
+docker buildx create --name mybuilder --use
+# docker buildx use mybuilder #If not running, check eith the ls
+
+docker buildx inspect --bootstrap # Start the buildx
+
+docker buildx build --platform linux/amd64,linux/arm64 -t airflow . 
+
 ```
 
 - Test the image
