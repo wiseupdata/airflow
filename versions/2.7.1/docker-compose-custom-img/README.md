@@ -124,7 +124,10 @@ docker buildx create --name mybuilder --use
 
 docker buildx inspect --bootstrap # Start the buildx
 
-docker buildx build --platform linux/amd64,linux/arm64 -t airflow . 
+docker buildx build --platform linux/amd64,linux/arm64 -t wiseupdata/airflow . --push
+docker buildx build --platform linux/amd64,linux/arm64 -t wiseupdata/airflow:2.7.1 . --push
+docker buildx build --platform linux/amd64,linux/arm64 -t wiseupdata/airflow:2.7.1-ubuntu-22.04 . --push
+
 
 ```
 
