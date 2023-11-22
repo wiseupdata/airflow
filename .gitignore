@@ -34,3 +34,16 @@ versions/2.7.3/docker-compose-custom-img/.env
 versions/2.7.3/docker-compose-custom-img/dags/futurerich
 versions/2.7.3/docker-compose-custom-img/dags/utils
 versions/2.7.3/docker-compose-custom-img/dags/__pycache__/test.cpython-38.pyc
+
+versions/2.7.1/docker-compose/.env
+versions/2.7.1/docker-compose-custom-img/.env
+versions/2.7.1/docker-compose-custom-img/dags/futurerich
+versions/2.7.1/docker-compose-custom-img/dags/utils
+versions/2.7.1/docker-compose-custom-img/dags/__pycache__/test.cpython-38.pyc
+
+versions/2.7.1/docker-compose/.env
+versions/2.7.1/docker-compose/.env
+versions/2.7.1/docker-compose/dags/futurerich
+versions/2.7.1/docker-compose/dags/utils
+versions/2.7.1/docker-compose/dags/__pycache__/test.cpython-38.pyc
+versions/2.7.1/docker-compose/logs/
