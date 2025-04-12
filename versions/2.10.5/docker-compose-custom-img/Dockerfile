@@ -10,7 +10,6 @@ RUN apt-get update \
 ##############################################################################
 RUN echo "Creating and Managing the user Airflow"
 ##############################################################################
-RUN adduser airflow --disabled-password && usermod -aG sudo airflow
 RUN echo "airflow ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/airflow
 
 
@@ -27,12 +26,12 @@ USER airflow
 
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir "apache-airflow==${AIRFLOW_VERSION}" \
-    lxml \
-    numpy==1.21.4 \
-    binance-connector==1.10.0 \
-    websocket_client==1.2.3 \
+    lxml==5.3.2 \
+    numpy==2.2.4 \
+    binance-connector==3.12.0 \
+    websocket_client==1.8.0 \
     pandas-ta==0.3.14b0 \
-    ta \
-    dateparser
+    ta==0.11.0 \
+    dateparser==1.2.1
 
 USER airflow
