@@ -50,14 +50,14 @@ docker-compose -f versions/2.10.5/DockerCompose/airflow.yml up -D
 ## Version 2.10.5 ✨️
 
 - airflow 2.10.5 - Official
-- Ubuntu 24.04.2 LTS end of life April 2032 - Official
-- Python 3.10 - Official
+- Debian 12.2 LTS end of life April 2032 - Official
+- Python 3.12.9 - Official
 - Kubernetes Ready and Tested!
 - User`airflow` with sudo no password
 - Made with A.I. contribution 🤖 
 - [Dockerfile](https://github.com/wiseupdata/airflow/blob/main/versions/2.10.5/Docker/Dockerfile)
 
-  > This setup it's the same for the tags: 2.10.5 and 2.10.5-ubuntu-24.04
+  > This setup it's the same for the tags: 2.10.5 and 2.10.5-Debian-12
 
 
 🚀 This docker was built on top of official Airflow, to be resilient and ready for debug, so it's light enough! If you need something different try the pure docker!
@@ -67,7 +67,7 @@ docker-compose -f versions/2.10.5/DockerCompose/airflow.yml up -D
 Example with specific version 💻:
 ```bash
 docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.10.5 
-docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.10.5-ubuntu-24.04 
+docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.10.5-debian-12 
 ```
 
 
@@ -107,29 +107,21 @@ click here!▶️
 </summary>
 
 
-## Simple customization example. 🎢
-
-- Update the `Dockerfile` and run the command bellow
-- Build the image
+## Simple Local build to validations 🎢
 
 ```bash
 docker build -t airflow ./versions/2.10.5/docker-compose-custom-img/ --no-cache
 ```
 
-- Test the image
+# Test the image Local
 ```bash
 docker run -it --rm airflow bash
 ```
 
-- Force the running for debug mode - Useful for Kubernetes
-```bash
-docker run --name airflow -d --rm airflow bash run
-docker exec -it airflow bash
+## Production Build. 🎢
 
-# Exit and kill
-exit
-docker rm airflow -f
-```
+- Update the `Dockerfile` and run the command bellow
+- Build the image
 
 - Log in to your account 🤜
 
@@ -137,25 +129,28 @@ docker rm airflow -f
 docker login -u wiseupdata
 ```
 
-- Create a tag 🤺
-
 ```bash
-docker tag airflow wiseupdata/airflow
-docker tag airflow wiseupdata/airflow:2.10.5
-docker tag airflow wiseupdata/airflow:2.10.5-ubuntu-24.04
+
+docker buildx ls
+docker buildx stop
+docker buildx rm mybuilder
+
+docker buildx create --name mybuilder --use
+# docker buildx use mybuilder #If not running, check eith the ls
+
+docker buildx inspect --bootstrap # Start the buildx
+
+docker buildx build --platform linux/amd64,linux/arm64 -t wiseupdata/airflow ./versions/2.10.5/docker-compose-custom-img --push
+docker buildx build --platform linux/amd64,linux/arm64 -t wiseupdata/airflow:2.10.5 ./versions/2.10.5/docker-compose-custom-img --push
+docker buildx build --platform linux/amd64,linux/arm64 -t wiseupdata/airflow:2.10.5-debian-12 ./versions/2.10.5/docker-compose-custom-img --push
+
 ```
 
-- push your image to dockerhub ♨️
-```bash
-docker push wiseupdata/airflow
-docker push wiseupdata/airflow:2.10.5
-docker push wiseupdata/airflow:2.10.5-ubuntu-24.04
-```
-
-### Test the image 🎢
+### Test the image Deployed 🎢
 
 ```bash
-docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow:2.10.5 
+docker image rm wiseupdata/airflow
+docker run -it --name airflow --rm --entrypoint /bin/bash wiseupdata/airflow
 ```
 </details>
 
@@ -263,7 +258,7 @@ wiseupdata/airflow:2.10.5 -c "echo logged; bash"
 1. [WiseUpData](https://www.wiseupdata.com/)
 1. [Emojis](https://github.com/wiseupdata/emojis)
 1. [Airflow](https://airflow.apache.org/docs/apache-airflow/2.10.5/installation/installing-from-pypi.html)
-1. [Airflow - Constrains](https://raw.githubusercontent.com/apache/airflow/constraints-main/constraints-3.10.txt)
+1. [Airflow - Constrains](https://raw.githubusercontent.com/apache/airflow/constraints-main/constraints-3.12.9.txt)
 
 
 <br>
